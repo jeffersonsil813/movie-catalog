@@ -8,11 +8,12 @@ body {
 @theme {
   --color-*: initial;
 
-  --color-yellow: #B8952E;
-  
-  --color-gray-100: #F5F4F5;
-  --color-gray-200: #B2AFB6;
-  --color-gray-300: #98959D;
-  --color-gray-800: #19181B;
-  --color-gray-900: #050505;
+  --color-yellow: oklch(66.56% 0.138 92.41);
+  --color-yellow-light: oklch(85.2% 0.199 91.936);
+
+  --color-gray-100: oklch(96.95% 0.002 323.5);
+  --color-gray-200: oklch(76.24% 0.005 303.41);
+  --color-gray-300: oklch(67.24% 0.005 301.65);
+  --color-gray-800: oklch(21.43% 0.006 312.42);
+  --color-gray-900: oklch(12.72% 0.001 286.37);
 }
