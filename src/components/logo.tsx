@@ -4,12 +4,12 @@ import Text from "./text";
 
 const Logo = () => {
   return (
-    <Link href={routes.home} className="flex flex-nowrap">
+    <Link href={routes.home} className="tracking-tighter w-fit">
       <Text as="h1" variant="body-lg-bold">
         Mo
-      </Text>
-      <Text as="h1" variant="body-lg-bold" className="text-yellow">
-        vies
+        <Text variant="body-lg-bold" className="text-yellow">
+          vies
+        </Text>
       </Text>
     </Link>
   );
