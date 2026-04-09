@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+body {
+  font-family: var(--font-catamaran);
+  background-color: var(--color-gray-900);
+}
+
+@theme {
+  --color-*: initial;
+
+  --color-yellow: #B8952E;
+  
+  --color-gray-100: #F5F4F5;
+  --color-gray-200: #B2AFB6;
+  --color-gray-300: #98959D;
+  --color-gray-900: #050505;
+}
