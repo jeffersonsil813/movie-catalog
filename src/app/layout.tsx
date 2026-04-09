@@ -1,3 +1,4 @@
+import Logo from "@/components/logo";
 import QueryProvider from "@/components/providers/queryProvider";
 import type { Metadata } from "next";
 import { Catamaran } from "next/font/google";
@@ -20,8 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${catamaran.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
-        <QueryProvider>{children}</QueryProvider>
+      <body className="min-h-full flex flex-col p-5 gap-5">
+        <QueryProvider>
+          <Logo />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
