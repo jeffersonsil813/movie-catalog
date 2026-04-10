@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={cn("h-full", "antialiased", catamaran.variable, "font-sans", geist.variable)}>
-      <body className="min-h-full flex flex-col p-5 gap-5">
+      <body className="min-h-full flex flex-col p-5 gap-5" suppressHydrationWarning>
         <QueryProvider>
           <Logo />
           {children}
