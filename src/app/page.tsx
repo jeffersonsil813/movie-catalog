@@ -1,6 +1,6 @@
 "use client";
+import AppPagination from "@/components/appPagination";
 import MovieCard from "@/components/movieCard";
-import Pagination from "@/components/pagination";
 import SearchBar from "@/components/searchBar";
 import { useMovies } from "@/hooks/useMovies";
 import { Movie } from "@/lib/tmdb";
@@ -11,7 +11,7 @@ export default function Home() {
   const { data, isLoading } = useMovies(page);
 
   const movies = data?.results ?? [];
-  const totalPages = data?.total_pages ?? 1;
+  const totalPages = Math.min(data?.total_pages ?? 1, 500);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <main>
       <SearchBar />
-      <div className="flex flex-wrap gap-5 py-5 justify-around">
+      <div className="flex flex-wrap gap-5 pt-5 pb-15 justify-around">
         {isLoading
           ? Array.from({ length: 7 }).map((_, index) => (
               <MovieCard key={index} isLoading movie={{} as Movie} />
@@ -31,7 +31,8 @@ export default function Home() {
               <MovieCard key={movie.id} movie={movie} priority={index < 4} />
             ))}
       </div>
-      <Pagination
+
+      <AppPagination
         currentPage={page}
         onPageChange={handlePageChange}
         totalPages={totalPages}
