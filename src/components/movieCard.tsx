@@ -8,7 +8,7 @@ import Skeleton from "./skeleton";
 import Text from "./text";
 
 export const movieCardVariants = cva(
-  "flex flex-col w-full rounded-xl bg-gray-800 relative overflow-hidden transition-all z-10",
+  "flex flex-col w-full rounded-xl bg-gray-800/50 backdrop-blur-sm relative overflow-hidden transition-all z-10",
   {
     variants: {
       interactive: {
