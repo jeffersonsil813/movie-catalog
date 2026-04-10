@@ -2,6 +2,7 @@
 import AppPagination from "@/components/appPagination";
 import MovieCard from "@/components/movieCard";
 import SearchBar from "@/components/searchBar";
+import Text from "@/components/text";
 import { useMovies } from "@/hooks/useMovies";
 import { Movie } from "@/lib/tmdb";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
@@ -44,21 +45,33 @@ export default function Home() {
   return (
     <main>
       <SearchBar onChange={handleSearchChange} />
-      <div className="flex flex-wrap gap-5 pt-5 pb-15 justify-around">
-        {isLoading
-          ? Array.from({ length: 7 }).map((_, index) => (
-              <MovieCard key={index} isLoading movie={{} as Movie} />
-            ))
-          : filteredMovies.map((movie, index) => (
-              <MovieCard key={movie.id} movie={movie} priority={index < 4} />
-            ))}
-      </div>
+      {filteredMovies.length === 0 ? (
+        <Text variant="body-md" as="h3" className="text-gray-300 text-center mt-10">
+          No results found.
+        </Text>
+      ) : (
+        <>
+          <div className="flex flex-wrap gap-5 pt-5 pb-15 justify-around">
+            {isLoading
+              ? Array.from({ length: 7 }).map((_, index) => (
+                  <MovieCard key={index} isLoading movie={{} as Movie} />
+                ))
+              : filteredMovies.map((movie, index) => (
+                  <MovieCard
+                    key={movie.id}
+                    movie={movie}
+                    priority={index < 4}
+                  />
+                ))}
+          </div>
 
-      <AppPagination
-        currentPage={page}
-        onPageChange={handlePageChange}
-        totalPages={totalPages}
-      />
+          <AppPagination
+            currentPage={page}
+            onPageChange={handlePageChange}
+            totalPages={totalPages}
+          />
+        </>
+      )}
     </main>
   );
 }
