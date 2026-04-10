@@ -5,7 +5,7 @@ const SearchBar = ({ ...props }: SearchBarProps) => {
     <input
       type="text"
       placeholder="Search movies..."
-      className="bg-transparent border-2 border-gray-300 w-full rounded-xl text-gray-200 placeholder:text-gray-300 p-3 outline-none transition-colors focus-within:border-yellow"
+      className="bg-gray-800/15 backdrop-blur-sm border-b-2 border-gray-300 w-full text-gray-200 placeholder:text-gray-300 p-3 outline-none transition-colors focus-within:border-yellow"
       {...props}
     />
   );
