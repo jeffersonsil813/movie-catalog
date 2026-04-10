@@ -1,5 +1,6 @@
 "use client";
 import MovieCard from "@/components/movieCard";
+import Pagination from "@/components/pagination";
 import SearchBar from "@/components/searchBar";
 import { useMovies } from "@/hooks/useMovies";
 import { Movie } from "@/lib/tmdb";
@@ -11,6 +12,12 @@ export default function Home() {
 
   const movies = data?.results ?? [];
   const totalPages = data?.total_pages ?? 1;
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
+    }
+  };
 
   return (
     <main>
@@ -24,6 +31,11 @@ export default function Home() {
               <MovieCard key={movie.id} movie={movie} priority={index < 4} />
             ))}
       </div>
+      <Pagination
+        currentPage={page}
+        onPageChange={handlePageChange}
+        totalPages={totalPages}
+      />
     </main>
   );
 }
