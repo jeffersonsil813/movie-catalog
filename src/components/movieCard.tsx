@@ -1,5 +1,6 @@
 import { routes } from "@/lib/routes";
-import { Movie, POSTER_BASE_URL } from "@/lib/tmdb";
+import { POSTER_BASE_URL } from "@/lib/tmdb";
+import { Movie } from "@/models/movies";
 import { cva, cx, type VariantProps } from "class-variance-authority";
 import { Star } from "lucide-react";
 import Image from "next/image";

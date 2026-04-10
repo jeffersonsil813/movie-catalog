@@ -4,7 +4,7 @@ import MovieCard from "@/components/movieCard";
 import SearchBar from "@/components/searchBar";
 import Text from "@/components/text";
 import { useMovies } from "@/hooks/useMovies";
-import { Movie } from "@/lib/tmdb";
+import { Movie } from "@/models/movies";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
