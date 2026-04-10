@@ -21,6 +21,7 @@ export interface MoviesResponse {
 export async function fetchPopularMovies(page = 1): Promise<MoviesResponse> {
   const res = await fetch(
     `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=pt-BR&page=${page}`,
+    { cache: "no-store" },
   );
   if (!res.ok) throw new Error("Error searching for movies.");
   return res.json();
