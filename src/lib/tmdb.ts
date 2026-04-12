@@ -1,4 +1,4 @@
-import { MoviesResponse } from "@/models/movies";
+import { Movie, MoviesResponse } from "@/models/movies";
 
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -10,5 +10,13 @@ export async function fetchPopularMovies(page = 1): Promise<MoviesResponse> {
     { cache: "no-store" },
   );
   if (!res.ok) throw new Error("Error searching for movies.");
+  return res.json();
+}
+
+export async function fetchMovieById(id: string): Promise<Movie> {
+  const res = await fetch(
+    `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=pt-BR`,
+  );
+  if (!res.ok) throw new Error("Error fetching movie details.");
   return res.json();
 }
