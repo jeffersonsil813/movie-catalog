@@ -66,6 +66,12 @@ const MovieHero = ({
     day: "numeric",
   });
 
+  const fadeIn = (delay: number): React.CSSProperties => ({
+    opacity: 0,
+    animation: "fadeIn 0.4s ease-out forwards",
+    animationDelay: `${delay}ms`,
+  });
+
   return (
     <div className={movieHeroVariants()}>
       <Image
@@ -77,10 +83,11 @@ const MovieHero = ({
         )}
         width={350}
         height={350}
+        style={fadeIn(0)}
       />
 
-      <div className={movieContentVariants()}>
-        <div className={movieContentHeaderVariants()}>
+      <div className={movieContentVariants()} style={fadeIn(150)}>
+        <div className={movieContentHeaderVariants()} style={fadeIn(250)}>
           <Text variant="body-lg-bold" as="h1" className="text-yellow-light">
             {title}
           </Text>
@@ -91,13 +98,14 @@ const MovieHero = ({
             </Text>
           </div>
         </div>
-        <Text as="h2" variant="body-md-bold">
+        <Text as="h2" variant="body-md-bold" style={fadeIn(350)}>
           Release date: <Text variant="body-md">{formattedReleaseDate}</Text>
         </Text>
         <Text
           as="h2"
           variant="body-md-bold"
           className="flex items-center flex-wrap gap-2"
+          style={fadeIn(450)}
         >
           Genre:{" "}
           {genres.map(({ id, name }, index) => (
@@ -110,7 +118,7 @@ const MovieHero = ({
             </Text>
           ))}
         </Text>
-        <Text as="p" variant="body-md" className="mt-6 leading-loose">
+        <Text as="p" variant="body-md" className="mt-6 leading-loose" style={fadeIn(550)}>
           {overview}
         </Text>
       </div>

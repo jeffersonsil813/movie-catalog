@@ -20,6 +20,7 @@ interface TextProps extends VariantProps<typeof textVariants> {
   as?: keyof React.JSX.IntrinsicElements;
   className?: string;
   children?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 const Text = ({
