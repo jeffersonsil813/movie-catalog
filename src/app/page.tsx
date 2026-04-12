@@ -6,7 +6,7 @@ import Text from "@/components/text";
 import { useMovies } from "@/hooks/useMovies";
 import { Movie } from "@/models/movies";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
@@ -21,12 +21,19 @@ export default function Home() {
   const movies = data?.results ?? [];
   const totalPages = Math.min(data?.total_pages ?? 1, 500);
 
+  const isPageChange = useRef(false);
+
   useEffect(() => {
+    if (isPageChange.current) {
+      isPageChange.current = false;
+      return;
+    }
+
     const timer = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString());
 
       if (search) {
-        params.set("search", search);
+        params.set("search", search.trim());
       } else {
         params.delete("search");
       }
@@ -56,6 +63,9 @@ export default function Home() {
     if (newPage < 1 || newPage > totalPages) return;
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", String(newPage));
+    params.delete("search");
+    isPageChange.current = true;
+    setSearch("");
     router.push(`/?${params.toString()}`);
   };
 
@@ -63,12 +73,12 @@ export default function Home() {
     e: ChangeEvent<HTMLInputElement, HTMLInputElement>,
   ) => {
     const newSearch = e.target.value;
-    setSearch(newSearch.trim());
+    setSearch(newSearch);
   };
 
   return (
     <main>
-      <SearchBar defaultValue={search} onChange={handleSearchChange} />
+      <SearchBar value={search} onChange={handleSearchChange} />
       {filteredMovies.length === 0 && !isLoading && (
         <Text
           variant="body-md"
