@@ -6,7 +6,14 @@ import Text from "@/components/text";
 import { useMovies } from "@/hooks/useMovies";
 import { Movie } from "@/models/movies";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 export default function Home() {
   const router = useRouter();
@@ -77,33 +84,35 @@ export default function Home() {
   };
 
   return (
-    <main>
-      <SearchBar value={search} onChange={handleSearchChange} />
-      {filteredMovies.length === 0 && !isLoading && (
-        <Text
-          variant="body-md"
-          as="h3"
-          className="text-gray-300 text-center mt-10"
-        >
-          No results found.
-        </Text>
-      )}
+    <Suspense fallback={<div>Carregando...</div>}>
+      <main>
+        <SearchBar value={search} onChange={handleSearchChange} />
+        {filteredMovies.length === 0 && !isLoading && (
+          <Text
+            variant="body-md"
+            as="h3"
+            className="text-gray-300 text-center mt-10"
+          >
+            No results found.
+          </Text>
+        )}
 
-      <div className="flex flex-wrap gap-5 pt-5 pb-15 justify-around">
-        {isLoading
-          ? Array.from({ length: 7 }).map((_, index) => (
-              <MovieCard key={index} isLoading movie={{} as Movie} />
-            ))
-          : filteredMovies.map((movie, index) => (
-              <MovieCard key={movie.id} movie={movie} priority={index < 4} />
-            ))}
-      </div>
+        <div className="flex flex-wrap gap-5 pt-5 pb-15 justify-around">
+          {isLoading
+            ? Array.from({ length: 7 }).map((_, index) => (
+                <MovieCard key={index} isLoading movie={{} as Movie} />
+              ))
+            : filteredMovies.map((movie, index) => (
+                <MovieCard key={movie.id} movie={movie} priority={index < 4} />
+              ))}
+        </div>
 
-      <AppPagination
-        currentPage={page}
-        onPageChange={handlePageChange}
-        totalPages={totalPages}
-      />
-    </main>
+        <AppPagination
+          currentPage={page}
+          onPageChange={handlePageChange}
+          totalPages={totalPages}
+        />
+      </main>
+    </Suspense>
   );
 }
