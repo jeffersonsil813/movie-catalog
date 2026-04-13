@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 Movies App
 
-## Getting Started
+A responsive movie listing application built with **Next.js** and powered by **The Movie Database (TMDB) API**. Browse, search, and explore movie details with a smooth and animated UI.
 
-First, run the development server:
+---
+
+## 🖥️ Screenshots
+
+| Home | Movie Details |
+|------|---------------|
+| ![Home](./public/home.png) | ![Details](./public/movie-details.png) |
+
+---
+
+## ✨ Features
+
+- 🎞 **Movie listing** — Browse movies with poster, title, year, and rating
+- 🔍 **Client-side search with debounce** — Live filtering as you type, optimized to avoid unnecessary API calls
+- 💀 **Skeleton loading** — Animated placeholders shown while data is being fetched
+- 📄 **Pagination** — Navigate through hundreds of pages of movies
+- 🎬 **Movie detail page** — Dedicated route with poster, genres, release date, rating, and synopsis
+- ⚠️ **Empty & error states** — Friendly feedback when no results are found or the API is unavailable
+- ✨ **Animations** — Smooth transitions and micro-interactions throughout the interface
+- 📱 **Fully responsive** — Works seamlessly on mobile, tablet, and desktop
+
+---
+
+## 🛠️ Tech Stack
+
+| Tool | Purpose |
+|------|---------|
+| [Next.js 15](https://nextjs.org/) (via `create-next-app`) | React framework |
+| [TypeScript](https://www.typescriptlang.org/) | Type safety |
+| [TanStack Query](https://tanstack.com/query) | Data fetching & caching |
+| [The Movie Database API](https://www.themoviedb.org/documentation/api) | Movie data source |
+| [Tailwind CSS](https://tailwindcss.com/) | Styling |
+| [shadcn/ui](https://ui.shadcn.com/) | UI component library |
+| [class-variance-authority](https://cva.style/) | Variant-based component styling |
+| [lucide-react](https://lucide.dev/) | Icon set |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- A free [TMDB API key](https://www.themoviedb.org/settings/api)
+
+### Installation
 
 ```bash
-npm run dev
+# Clone the repository
+git clone https://github.com/jeffersonsil813/movie-catalog
+cd movie-catalog
+
+# Install dependencies
+yarn
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file in the root of the project:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_TMDB_API_KEY=your_tmdb_api_key_here
+```
 
-## Learn More
+### Running the development server
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+yarn dev
+# or
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Building for production
 
-## Deploy on Vercel
+```bash
+yarn build && yarn start
+# or
+npm run build && npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Live Demo
+
+> 🔗 _Deploy link coming soon.._
+
+---
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── page.tsx          # Home — movie listing with search & pagination
+│   └── movie/
+│       └── [id]/
+│           └── page.tsx  # Movie detail page
+├── components/           # Reusable UI components
+├── hooks/                # Custom React hooks
+├── lib/                  # API helpers and utilities
+└── models/                # TypeScript type definitions
+```
+
+---
+
+## 📝 License
+
+This project is open source and available under the [MIT License](./LICENSE).
