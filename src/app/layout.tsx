@@ -1,11 +1,12 @@
 import Logo from "@/components/logo";
 import QueryProvider from "@/components/providers/queryProvider";
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Catamaran, Geist } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const catamaran = Catamaran({
   subsets: ["latin"],
@@ -23,11 +24,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full", "antialiased", catamaran.variable, "font-sans", geist.variable)}>
-      <body className="min-h-full flex flex-col p-5 gap-5" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={cn(
+        "h-full",
+        "antialiased",
+        catamaran.variable,
+        "font-sans",
+        geist.variable,
+      )}
+    >
+      <body
+        className="min-h-full flex flex-col p-5 gap-5"
+        suppressHydrationWarning
+      >
         <QueryProvider>
-          <Logo />
-          {children}
+          <Suspense fallback={<div>Carregando...</div>}>
+            <Logo />
+            {children}
+          </Suspense>
         </QueryProvider>
       </body>
     </html>
