@@ -90,7 +90,7 @@ npm run build && npm start
 
 ## 🌐 Live Demo
 
-> 🔗 _Deploy link coming soon.._
+> 🔗 [Movies App](https://movie-catalog-taupe.vercel.app/)
 
 ---
 
@@ -105,7 +105,7 @@ npm run build && npm start
 ├── components/           # Reusable UI components
 ├── hooks/                # Custom React hooks
 ├── lib/                  # API helpers and utilities
-└── models/                # TypeScript type definitions
+└── models/               # TypeScript type definitions
 ```
 
 ---
